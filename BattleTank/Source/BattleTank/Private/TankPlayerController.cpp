@@ -15,7 +15,7 @@ void ATankPlayerController::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("can't get the tank"));
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("TankPlayerController Tank = %s"),*tank->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("TankPlayerController Tank !!!= %s"),*tank->GetName());
 }
 
 ATank* ATankPlayerController::GetTank() const
