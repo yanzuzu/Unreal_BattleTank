@@ -23,4 +23,8 @@ private:
 	ATank* playerTank;
 	void AimAtCrosshair();
 	bool IsSightRayHit(FVector& outHitLocation) const;
+	UPROPERTY(EditAnywhere)
+	float CrosshairXlocation = 0.5;
+	UPROPERTY(EditAnywhere)
+	float CrosshairYlocation = 0.3333;
 };
