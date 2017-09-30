@@ -34,6 +34,18 @@ void ATankPlayerController::AimAtCrosshair()
 	{
 		return;
 	}
+	FVector hitLocation;
+	if (IsSightRayHit(hitLocation))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("hitLocation : %s"), *hitLocation.ToString());
+
+	}
+}
+
+bool ATankPlayerController::IsSightRayHit(FVector& outHitLocation) const
+{
+	outHitLocation = FVector(1.0f);
+	return true;
 }
 
 
