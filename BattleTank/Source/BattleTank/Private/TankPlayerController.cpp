@@ -4,23 +4,36 @@
 #include "TankPlayerController.h"
 #include "Tank.h"
 
-
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank* tank = GetTank();
-	if (tank == nullptr)
+	playerTank = GetTank();
+	if (playerTank == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can't get the tank"));
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("TankPlayerController Tank !!!= %s"),*tank->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("TankPlayerController Tank !!!= %s"),*playerTank->GetName());
+}
+
+void ATankPlayerController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	AimAtCrosshair();
 }
 
 ATank* ATankPlayerController::GetTank() const
 {
 	return Cast<ATank>(GetPawn());
+}
+
+void ATankPlayerController::AimAtCrosshair()
+{
+	if (playerTank == nullptr)
+	{
+		return;
+	}
 }
 
 
