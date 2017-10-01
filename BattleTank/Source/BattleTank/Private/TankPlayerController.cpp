@@ -37,8 +37,7 @@ void ATankPlayerController::AimAtCrosshair()
 	FVector hitLocation;
 	if (IsSightRayHit(hitLocation))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("hitLocation : %s"), *hitLocation.ToString());
-
+		UE_LOG(LogTemp, Warning, TEXT("hitLocation : %s"), *hitLocation.ToString());
 	}
 }
 
@@ -47,10 +46,13 @@ bool ATankPlayerController::IsSightRayHit(FVector& outHitLocation) const
 	FVector lookDirection;
 	if(GetLookDirection(lookDirection))
 	{ 
-		UE_LOG(LogTemp, Warning, TEXT("cam world dir : %s"), *lookDirection.ToString())
+		if (GetHitLocationByLookDir(lookDirection, outHitLocation))
+		{
+			return true;
+		}
 	}
 	
-	return true;
+	return false;
 }
 
 bool ATankPlayerController::GetLookDirection(FVector& outLookDirection) const
@@ -61,6 +63,24 @@ bool ATankPlayerController::GetLookDirection(FVector& outLookDirection) const
 
 	FVector camWorldLocation;
 	return DeprojectScreenPositionToWorld(screenPos.X, screenPos.Y, camWorldLocation, outLookDirection);
+}
+
+bool ATankPlayerController::GetHitLocationByLookDir(FVector lookDirection, FVector& hitLocation) const
+{
+	FHitResult hitResult;
+	FVector startLocation = PlayerCameraManager->GetCameraLocation();
+	FVector endLocation = startLocation + (lookDirection * LineTraceRange);
+	if (GetWorld()->LineTraceSingleByChannel(
+		hitResult,
+		startLocation,
+		endLocation,
+		ECC_Visibility))
+	{
+		hitLocation = hitResult.Location;
+		return true;
+	}
+	hitLocation = FVector(0);
+	return false;
 }
 
 
