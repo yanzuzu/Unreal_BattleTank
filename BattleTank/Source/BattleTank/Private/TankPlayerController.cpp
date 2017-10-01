@@ -44,12 +44,23 @@ void ATankPlayerController::AimAtCrosshair()
 
 bool ATankPlayerController::IsSightRayHit(FVector& outHitLocation) const
 {
+	FVector lookDirection;
+	if(GetLookDirection(lookDirection))
+	{ 
+		UE_LOG(LogTemp, Warning, TEXT("cam world dir : %s"), *lookDirection.ToString())
+	}
+	
+	return true;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector& outLookDirection) const
+{
 	int32 viewPortSizeX, viewPortSizeY;
 	GetViewportSize(viewPortSizeX, viewPortSizeY);
 	FVector2D screenPos = FVector2D(viewPortSizeX*CrosshairXlocation, viewPortSizeY*CrosshairYlocation);
-	UE_LOG(LogTemp, Warning, TEXT("screenPos = %s"), *screenPos.ToString());
 
-	return true;
+	FVector camWorldLocation;
+	return DeprojectScreenPositionToWorld(screenPos.X, screenPos.Y, camWorldLocation, outLookDirection);
 }
 
 
