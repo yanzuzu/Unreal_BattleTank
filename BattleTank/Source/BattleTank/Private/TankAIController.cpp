@@ -15,14 +15,23 @@ void ATankAIController::BeginPlay()
 		return;
 	}
 
-	ATank * playerTank = GetPlayerTank();
+	playerTank = GetPlayerTank();
 	if (playerTank == nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can't get the player tank obj~~"));
 		return;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("the player tank obj = %s"), *playerTank->GetName());
+}
+
+void ATankAIController::Tick(float deltaTime)
+{
+	Super::Tick(deltaTime);
+	if (playerTank == nullptr)
+	{
+		return;
+	}
+	GetTank()->AimAt(playerTank->GetActorLocation());
 }
 
 ATank* ATankAIController::GetTank() const
