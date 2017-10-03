@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/Pawn.h"
-#include "TankAimingComponent.h"
+#include "TankAmiingAt.h"
 #include "Tank.generated.h"
 
 UCLASS()
@@ -11,10 +11,13 @@ class BATTLETANK_API ATank : public APawn
 {
 	GENERATED_BODY()
 protected:
-	ATankAimingComponent* tankAimingComponent = nullptr;
+	UTankAmiingAt* tankAimingComponent = nullptr;
 public:
 	// Sets default values for this pawn's properties
 	ATank();
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetBarrel(UStaticMeshComponent*  staticMeshComponent);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
