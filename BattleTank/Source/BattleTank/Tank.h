@@ -29,5 +29,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	void AimAt(FVector location);
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float LaunchSpeed = 10000;
 	
 };
