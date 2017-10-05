@@ -35,8 +35,29 @@ void UTankAmiingAt::TickComponent( float DeltaTime, ELevelTick TickType, FActorC
 
 void UTankAmiingAt::AimAt(FVector location, float launchSpeed )
 {
-	UE_LOG(LogTemp, Warning, TEXT("Firing at %f"), launchSpeed);
-}
+	if (barrel == nullptr) { return; }
+
+	FVector outLaunchVelocity;
+	FVector startLocation = barrel->GetSocketLocation(FName("Projectile"));
+
+	if (UGameplayStatics::SuggestProjectileVelocity(
+		this,
+		outLaunchVelocity,
+		startLocation,
+		location,
+		launchSpeed,
+		false,
+		0,
+		0,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	))
+	{
+		FVector normalV = outLaunchVelocity.GetSafeNormal();
+		UE_LOG(LogTemp, Warning, TEXT("Firing at %s"), *normalV.ToString());
+	}
+	}
+
+	
 
 void UTankAmiingAt::SetBarrel(UStaticMeshComponent*  meshComponent)
 {
