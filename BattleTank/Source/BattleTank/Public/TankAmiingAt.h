@@ -26,4 +26,5 @@ public:
 	void SetBarrel(UStaticMeshComponent*  staticMeshComponent);
 private:
 	UStaticMeshComponent* barrel = nullptr;
+	void MoveBarrelToward(FVector aimAtDirection);
 };

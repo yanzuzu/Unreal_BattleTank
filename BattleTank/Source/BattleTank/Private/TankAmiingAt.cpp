@@ -52,12 +52,18 @@ void UTankAmiingAt::AimAt(FVector location, float launchSpeed )
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	))
 	{
-		FVector normalV = outLaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Warning, TEXT("Firing at %s"), *normalV.ToString());
+		FVector aimArDirection = outLaunchVelocity.GetSafeNormal();
+		MoveBarrelToward(aimArDirection);
 	}
-	}
+}
 
-	
+void UTankAmiingAt::MoveBarrelToward(FVector aimAtDirection)
+{
+	auto barrelRotator = barrel->GetForwardVector().Rotation();
+	auto aimRotator = aimAtDirection.Rotation();
+	auto diffRotator = aimRotator - barrelRotator;
+	UE_LOG(LogTemp, Warning, TEXT("barrel diff rotator: %s"), *diffRotator.ToString());
+}
 
 void UTankAmiingAt::SetBarrel(UStaticMeshComponent*  meshComponent)
 {
