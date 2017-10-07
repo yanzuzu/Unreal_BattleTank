@@ -2,7 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankAmiingAt.h"
-
+#include "TankBarrel.h"
 
 // Sets default values for this component's properties
 UTankAmiingAt::UTankAmiingAt()
@@ -62,10 +62,10 @@ void UTankAmiingAt::MoveBarrelToward(FVector aimAtDirection)
 	auto barrelRotator = barrel->GetForwardVector().Rotation();
 	auto aimRotator = aimAtDirection.Rotation();
 	auto diffRotator = aimRotator - barrelRotator;
-	UE_LOG(LogTemp, Warning, TEXT("barrel diff rotator: %s"), *diffRotator.ToString());
+	barrel->Elevate(5);
 }
 
-void UTankAmiingAt::SetBarrel(UStaticMeshComponent*  meshComponent)
+void UTankAmiingAt::SetBarrel(UTankBarrel*  barrelMesh)
 {
-	barrel = meshComponent;
+	barrel = barrelMesh;
 }

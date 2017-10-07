@@ -6,6 +6,8 @@
 #include "TankAmiingAt.h"
 #include "Tank.generated.h"
 
+class UTankBarrel;
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -17,7 +19,7 @@ public:
 	ATank();
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrel(UStaticMeshComponent*  staticMeshComponent);
+	void SetBarrel(UTankBarrel*  staticMeshComponent);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
