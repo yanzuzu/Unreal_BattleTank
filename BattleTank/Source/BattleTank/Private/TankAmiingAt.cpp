@@ -54,6 +54,8 @@ void UTankAmiingAt::AimAt(FVector location, float launchSpeed )
 	{
 		FVector aimArDirection = outLaunchVelocity.GetSafeNormal();
 		MoveBarrelToward(aimArDirection);
+
+		auto time = GetWorld()->GetTimeSeconds();
 	}
 }
 

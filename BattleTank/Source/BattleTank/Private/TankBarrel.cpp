@@ -4,8 +4,8 @@
 #include "TankBarrel.h"
 
 
-void UTankBarrel::Elevate(float degreePerSec)
+void UTankBarrel::Elevate(float relativeSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("barrel elevate degree: %f"), degreePerSec);
+	UE_LOG(LogTemp, Warning, TEXT("barrel elevate degree: %f"), relativeSpeed);
 }
 
