@@ -64,7 +64,7 @@ void UTankAmiingAt::MoveBarrelToward(FVector aimAtDirection)
 	auto barrelRotator = barrel->GetForwardVector().Rotation();
 	auto aimRotator = aimAtDirection.Rotation();
 	auto diffRotator = aimRotator - barrelRotator;
-	barrel->Elevate(5);
+	barrel->Elevate(diffRotator.Pitch);
 }
 
 void UTankAmiingAt::SetBarrel(UTankBarrel*  barrelMesh)
