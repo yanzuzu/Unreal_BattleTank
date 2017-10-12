@@ -3,6 +3,7 @@
 #include "BattleTank.h"
 #include "TankAmiingAt.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 
 // Sets default values for this component's properties
 UTankAmiingAt::UTankAmiingAt()
@@ -36,7 +37,7 @@ void UTankAmiingAt::TickComponent( float DeltaTime, ELevelTick TickType, FActorC
 void UTankAmiingAt::AimAt(FVector location, float launchSpeed )
 {
 	if (barrel == nullptr) { return; }
-
+	if (turret == nullptr) { return; }
 	FVector outLaunchVelocity;
 	FVector startLocation = barrel->GetSocketLocation(FName("Projectile"));
 
@@ -54,8 +55,7 @@ void UTankAmiingAt::AimAt(FVector location, float launchSpeed )
 	{
 		FVector aimArDirection = outLaunchVelocity.GetSafeNormal();
 		MoveBarrelToward(aimArDirection);
-
-		auto time = GetWorld()->GetTimeSeconds();
+		MoveTurretToward(aimArDirection);
 	}
 }
 
@@ -67,7 +67,20 @@ void UTankAmiingAt::MoveBarrelToward(FVector aimAtDirection)
 	barrel->Elevate(diffRotator.Pitch);
 }
 
+void UTankAmiingAt::MoveTurretToward(FVector aimAtDirection)
+{
+	auto turretRotator = barrel->GetForwardVector().Rotation();
+	auto aimRotator = aimAtDirection.Rotation();
+	auto diffRotator = aimRotator - turretRotator;
+	turret->Rotate(diffRotator.Yaw);
+}
+
 void UTankAmiingAt::SetBarrel(UTankBarrel*  barrelMesh)
 {
 	barrel = barrelMesh;
+}
+
+void UTankAmiingAt::SetTurret(UTankTurret*  turretMesh)
+{
+	turret = turretMesh;
 }

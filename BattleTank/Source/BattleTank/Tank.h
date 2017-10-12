@@ -7,6 +7,7 @@
 
 class UTankBarrel;
 class UTankAmiingAt;
+class UTankTurret;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -20,6 +21,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrel(UTankBarrel*  staticMeshComponent);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurret(UTankTurret*  turret);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

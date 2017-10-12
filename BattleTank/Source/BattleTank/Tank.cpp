@@ -41,3 +41,8 @@ void ATank::SetBarrel(UTankBarrel*  meshComponent)
 	tankAimingComponent->SetBarrel(meshComponent);
 }
 
+void ATank::SetTurret(UTankTurret*  turret)
+{
+	tankAimingComponent->SetTurret(turret);
+}
+
