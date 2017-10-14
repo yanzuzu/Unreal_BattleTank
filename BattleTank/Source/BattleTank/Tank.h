@@ -25,6 +25,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurret(UTankTurret*  turret);
 
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void Fire();
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
