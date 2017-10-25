@@ -9,6 +9,7 @@ class UTankBarrel;
 class UTankAmiingAt;
 class UTankTurret;
 class AProjectile;
+class UTankTrack;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
