@@ -5,6 +5,7 @@
 #include "TankAmiingAt.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
+#include "TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
@@ -16,6 +17,7 @@ ATank::ATank()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("can't construct the aiming component"));
 	}
+	tankMovemomentComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 }
 
 // Called when the game starts or when spawned

@@ -4,5 +4,8 @@
 #include "TankMovementComponent.h"
 
 
-
+void UTankMovementComponent::IntendMoveForward(float throwValue)
+{
+	UE_LOG(LogTemp, Warning, TEXT("intend move forward, throw : %f"), throwValue);
+}
 

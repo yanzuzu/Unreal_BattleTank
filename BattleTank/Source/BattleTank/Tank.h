@@ -10,6 +10,7 @@ class UTankAmiingAt;
 class UTankTurret;
 class AProjectile;
 class UTankTrack;
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -17,6 +18,9 @@ class BATTLETANK_API ATank : public APawn
 	GENERATED_BODY()
 protected:
 	UTankAmiingAt* tankAimingComponent = nullptr;
+
+	UPROPERTY(BlueprintReadOnly)
+	UTankMovementComponent* tankMovemomentComponent = nullptr;
 public:
 	// Sets default values for this pawn's properties
 	ATank();
