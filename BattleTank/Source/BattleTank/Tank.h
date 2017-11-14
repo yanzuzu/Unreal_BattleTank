@@ -19,8 +19,6 @@ class BATTLETANK_API ATank : public APawn
 protected:
 	UTankAmiingAt* tankAimingComponent = nullptr;
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankMovementComponent* tankMovemomentComponent = nullptr;
 public:
 	// Sets default values for this pawn's properties
 	ATank();
