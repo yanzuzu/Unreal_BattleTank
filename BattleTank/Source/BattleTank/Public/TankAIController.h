@@ -17,5 +17,5 @@ class BATTLETANK_API ATankAIController : public AAIController
 public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float deltaTime) override;
-	float AcceptRadius = 3000;
+	float AcceptRadius = 2000;
 };

@@ -30,6 +30,9 @@ void UTankMovementComponent::IntendMoveTurn(float throwValue)
 
 void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("move velocity = %s"), *MoveVelocity.ToString());
+	auto forwardV = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto moveV = MoveVelocity.GetSafeNormal();
+	float throwValue = FVector::DotProduct(forwardV, moveV);
+	IntendMoveForward(throwValue);
 }
 
