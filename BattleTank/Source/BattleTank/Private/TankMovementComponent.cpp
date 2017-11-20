@@ -33,6 +33,10 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	auto forwardV = GetOwner()->GetActorForwardVector().GetSafeNormal();
 	auto moveV = MoveVelocity.GetSafeNormal();
 	float throwValue = FVector::DotProduct(forwardV, moveV);
+	FVector turnVectorValue = FVector::CrossProduct(forwardV, moveV);
+	
 	IntendMoveForward(throwValue);
+
+	IntendMoveTurn(turnVectorValue.Z);
 }
 
