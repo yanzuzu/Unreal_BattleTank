@@ -17,6 +17,7 @@ class BATTLETANK_API ATank : public APawn
 {
 	GENERATED_BODY()
 protected:
+	UPROPERTY(BlueprintReadOnly)
 	UTankAmiingAt* tankAimingComponent = nullptr;
 
 public:
