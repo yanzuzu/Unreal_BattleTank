@@ -33,10 +33,11 @@ public:
 
 	void AimAt(FVector location , float launchSpeed );
 	
-	void SetBarrel(UTankBarrel*  barrel);
-	void SetTurret(UTankTurret*  turret);
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void Init(UTankBarrel* barrel, UTankTurret* turret);
+
 protected:
-	UPROPERTY(BlueprintReadOnly, Category = Setups)
+	UPROPERTY(BlueprintReadOnly, Category = "Setup")
 	EFiringStatus firingStatus = EFiringStatus::Reloading;
 private:
 	UTankBarrel* barrel = nullptr;

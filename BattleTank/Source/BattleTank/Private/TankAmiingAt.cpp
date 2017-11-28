@@ -75,12 +75,9 @@ void UTankAmiingAt::MoveTurretToward(FVector aimAtDirection)
 	turret->Rotate(diffRotator.Yaw);
 }
 
-void UTankAmiingAt::SetBarrel(UTankBarrel*  barrelMesh)
+void UTankAmiingAt::Init(UTankBarrel* barrelToSet, UTankTurret* turretToSet)
 {
-	barrel = barrelMesh;
+	barrel = barrelToSet;
+	turret = turretToSet;
 }
 
-void UTankAmiingAt::SetTurret(UTankTurret*  turretMesh)
-{
-	turret = turretMesh;
-}

@@ -24,13 +24,7 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrel(UTankBarrel*  staticMeshComponent);
-
-	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetTurret(UTankTurret*  turret);
-
-	UFUNCTION(BlueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Fire();
 
 	// Called when the game starts or when spawned
@@ -41,16 +35,17 @@ public:
 
 	void AimAt(FVector location);
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 10000;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBP;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float ReloadFireTime = 3;
 
 	double LastReloadFireTime = 0;
 
 	UTankBarrel* barrel = nullptr;
+
 };
