@@ -31,6 +31,10 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 
 void ATank::AimAt(FVector location)
 {
+	if (tankAimingComponent == nullptr)
+	{
+		return;
+	}
 	tankAimingComponent->AimAt(location, LaunchSpeed);
 }
 
